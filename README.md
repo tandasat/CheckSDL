@@ -3,7 +3,7 @@ CheckSDL
 
 A tool evaluates security configurations of a given file based on Microsoft Security Development Lifecycle (SDL). 
 
-This tool can be used for either defensive or offensive purpose since it can unveil PE files compiled with insecure configurations.
+This tool can be used for both defensive and offensive purposes since it can unveil PE files compiled with insecure configurations.
 
 
 Usage
