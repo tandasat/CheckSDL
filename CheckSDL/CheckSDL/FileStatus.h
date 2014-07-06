@@ -1,0 +1,65 @@
+//
+// This module defines a struct representing PE characteristics and the
+// evaluation result of them pertaining to the file
+//
+#pragma once
+
+
+// C/C++ standard headers
+// Other external headers
+// Windows headers
+// Project headers
+#include "ImportStatus.h"
+#include "PEConfig.h"
+#include "SDLStatus.h"
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// macro utilities
+//
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// constants and macros
+//
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// types
+//
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// prototypes
+//
+
+struct FileStatus
+{
+    FileStatus(
+        std::tr2::sys::path Path,
+        PEConfig Config,
+        SDLStatus Status)
+        : path(std::move(Path))
+        , peConfig(std::move(Config))
+        , sdlStatus(std::move(Status))
+    {}
+    std::tr2::sys::path path;
+    PEConfig peConfig;
+    SDLStatus sdlStatus;
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// variables
+//
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// implementations
+//
