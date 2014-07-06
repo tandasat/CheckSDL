@@ -65,9 +65,9 @@ SDLStatus::SDLStatus(
     , m_isSEHProtectionEnabled(pe->isSEHProtectionEnabled())
     , m_isGSEnabled(pe->isManagedPE() || pe->isGSEnabled())
     , m_isHeapProtectionEnabled(!pe->isExecutable() ? TriBool::NotApplicable
-    : pe->isManagedPE() ? TriBool::True
-    : pe->isHeapProtectionEnabled() ? TriBool::True
-    : TriBool::False)
+                               : pe->isManagedPE() ? TriBool::True
+                               : pe->isHeapProtectionEnabled() ? TriBool::True
+                               : TriBool::False)
     , m_severity({})
 {
     //

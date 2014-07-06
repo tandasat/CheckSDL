@@ -98,7 +98,18 @@ bool AppMain(
 {
     if (Args.size() == 1)
     {
-        std::cout << ">this.exe <target_path> [<csv_out_path>]\n" << std::endl;
+        std::cout
+            << "Usage:\n"
+            << "    >CheckSDL.exe target_path [csv_out_path]\n"
+            << "\n"
+            << "    target_path: A path of either a file or a directory to evaluate.\n"
+            << "    csv_out_path: A path of a CSV file to save the result if needed.\n"
+            << "                  An existing file will be overwritten without warning.\n"
+            << "\n"
+            << "Example:\n"
+            << "    >CheckSDL.exe CheckSDL.exe\n"
+            << "    >CheckSDL.exe C:\\Windows\\system32 system32.csv\n"
+            << std::endl;
         return false;
     }
 

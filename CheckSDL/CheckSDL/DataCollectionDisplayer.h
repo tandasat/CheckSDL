@@ -55,9 +55,9 @@ public:
         std::uint32_t sumOfNoDEP;
         std::uint32_t sumOfNoHeapProtection;
         std::uint32_t numberOfExecutableFiles;
-        std::uint32_t sumOfBadSections;
-        std::uint32_t sumOfBad1Funcs;
-        std::uint32_t sumOfBad2Funcs;
+        std::uint32_t sumOfSharedSections;
+        std::uint32_t sumOfBannedFuncs1;
+        std::uint32_t sumOfBannedFuncs2;
     };
 
 private:

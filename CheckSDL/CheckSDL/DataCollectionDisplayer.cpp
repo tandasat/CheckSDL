@@ -110,9 +110,9 @@ DataCollectionDisplayer::DataCollectionDisplayer(
         if (!file.sdlStatus.isGSEnabled()) { m_stat.sumOfNoGS++; }
         if (file.sdlStatus.isHeapProtectionEnabled() == TriBool::False) { m_stat.sumOfNoHeapProtection++; }
         if (file.peConfig.isExecutable()) { m_stat.numberOfExecutableFiles++; }
-        m_stat.sumOfBadSections += file.peConfig.getSharedSectionNames().size();
-        m_stat.sumOfBad1Funcs += file.peConfig.getImportedBannedFunctionsRequired().size();
-        m_stat.sumOfBad2Funcs += file.peConfig.getimportedBannedFunctionsRecommended().size();
+        m_stat.sumOfSharedSections += file.peConfig.getSharedSectionNames().size();
+        m_stat.sumOfBannedFuncs1 += file.peConfig.getImportedBannedFunctionsRequired().size();
+        m_stat.sumOfBannedFuncs2 += file.peConfig.getimportedBannedFunctionsRecommended().size();
     }
 }
 
@@ -158,15 +158,15 @@ void write(
         << "(Built)" << Separator
         << "NewComp" << Separator
         << "(Ver)" << Separator
-        << "SEHP" << Separator
         << "GS" << Separator
-        << "ASLR" << Separator
+        << "SEHP" << Separator
         << "DEP" << Separator
+        << "ASLR" << Separator
         << "HeapP" << Separator
-        << "#ofBS" << Separator
+        << "#ofSS" << Separator
         << "#ofBF1" << Separator
         << "#ofBF2" << Separator
-        << "Path" << Separator
+        << "(Path)" << Separator
         << "\n";
 
     for (const auto& file : Files)
@@ -184,10 +184,10 @@ void write(
             << tm.tm_year + 1900 << "/" << std::setw(2) << tm.tm_mon + 1 << Separator
             << file.sdlStatus.isBuildByGoodCompiler() << Separator
             << file.peConfig.getLinkerVersion() << note << Separator
-            << file.sdlStatus.isSEHProtectionEnabled() << Separator
             << file.sdlStatus.isGSEnabled() << Separator
-            << file.sdlStatus.isASLREnabled() << Separator
+            << file.sdlStatus.isSEHProtectionEnabled() << Separator
             << file.sdlStatus.isDEPEnabled() << Separator
+            << file.sdlStatus.isASLREnabled() << Separator
             << heap << Separator
             << file.peConfig.getSharedSectionNames().size() << Separator
             << file.peConfig.getImportedBannedFunctionsRequired().size() << Separator
@@ -202,14 +202,14 @@ void write(
         << Separator
         << static_cast<double>(Stat.sumOfBadCompilerUsages) / Files.size() * 100 << "%" << Separator
         << Separator
-        << static_cast<double>(Stat.sumOfNoSEHProtection) / Files.size() * 100 << "%" << Separator
         << static_cast<double>(Stat.sumOfNoGS) / Files.size() * 100 << "%" << Separator
-        << static_cast<double>(Stat.sumOfNoASLR) / Files.size() * 100 << "%" << Separator
+        << static_cast<double>(Stat.sumOfNoSEHProtection) / Files.size() * 100 << "%" << Separator
         << static_cast<double>(Stat.sumOfNoDEP) / Files.size() * 100 << "%" << Separator
+        << static_cast<double>(Stat.sumOfNoASLR) / Files.size() * 100 << "%" << Separator
         << static_cast<double>(Stat.sumOfNoHeapProtection) / Stat.numberOfExecutableFiles * 100 << "%" << Separator
-        << static_cast<double>(Stat.sumOfBadSections) / Files.size() << Separator
-        << static_cast<double>(Stat.sumOfBad1Funcs) / Files.size() << Separator
-        << static_cast<double>(Stat.sumOfBad2Funcs) / Files.size() << Separator
+        << static_cast<double>(Stat.sumOfSharedSections) / Files.size() << Separator
+        << static_cast<double>(Stat.sumOfBannedFuncs1) / Files.size() << Separator
+        << static_cast<double>(Stat.sumOfBannedFuncs2) / Files.size() << Separator
         << "\n";
 }
 
