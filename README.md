@@ -91,7 +91,6 @@ Note
 - Analysis of imported banned functions are not as accurate as a result of source code based analysis since these functions may be either inlined (the tool causes false negatives) or emitted by some of StrSafe functions (the tool causes false positives).
 - When a file is Managed PE file, some configurations are treated as enabled regardless of actual value in a PE header; these are GS, DEP, ASLR and Heap Protection.
 - Heap Protection is only evaluated when a file is an executable file according to the SDL criteria.
-- Any of run-time configuration (e.g., use of HeapSetInformation() or SetProcessDEPPolicy()) is not considered.
 
 
 Supported Platforms
