@@ -3,7 +3,7 @@ CheckSDL
 
 A tool evaluates security configurations of a given file based on Microsoft Security Development Lifecycle (SDL). 
 
-This tool can be used for either defensive or offensive porpose since it can unveil PE files compiled with unsecure configururations.
+This tool can be used for either defensive or offensive purpose since it can unveil PE files compiled with insecure configurations.
 
 
 Usage
@@ -26,7 +26,7 @@ In a nutshell, this tool checks if a PE file is:
 
 These criteria are defined and explained in [Windows ISV Software Security Defenses](http://msdn.microsoft.com/en-us/library/bb430720.aspx) and the pages linked by this page. 
 
-There are some differences between this tool and SDL. For example, this tool defines severity for each check point either Critical or High for simplicity, while SDL priolitalized them as either Critical, High or Moderate, but most thigs are conforming to SDL. Other caveats are listed on a Note section.
+There are some differences between this tool and SDL. For example, this tool defines severity for each check point either Critical or High for simplicity, while SDL prioritized them as either Critical, High or Moderate, but most things are conforming to SDL. Other caveats are listed on a Note section.
 
 
 Sample Output
@@ -72,7 +72,7 @@ The last line is statistics of the result. Each column means:
 - An average number of imported banned functions categorized as Require.  
 - An average number of imported banned functions categorized as Recommended.  
 
-For all of them, the lower number, the better. So let's compare results for system32 directoryies on both Windows XP SP3 and 7 SP1. 
+For all of them, the lower number, the better. So let's compare results for system32 directories on both Windows XP SP3 and 7 SP1. 
 
     #ofCV #ofHV (Built) NewComp (Ver) GS     SEHP   DEP    ASLR   HeapP  #ofSS #ofBF1 #ofBF2  (Path)	
     3.61  1.68          94.19%        32.15% 44.90%	95.14% 95.05% 99.05% 0.00  3.53   1.64	  XP SP3
@@ -87,8 +87,8 @@ Note
 -----------------
 - A 64 bit file is not analyzed.
 - Only .exe, .dll and .ocx are analyzed.
-- A kernel mode file with the above extentions will be analyzed incorrectly since analysis is done in the same manner as a user mode file. 
-- Analysis of imported banned functions are not as acurate as a result of source code based analysis since these functions may be either inlined (the tool causes false negatives) or emitted by some of StrSafe functions (the tool causes false positives).
+- A kernel mode file with the above extensions will be analyzed incorrectly since analysis is done in the same manner as a user mode file. 
+- Analysis of imported banned functions are not as accurate as a result of source code based analysis since these functions may be either inlined (the tool causes false negatives) or emitted by some of StrSafe functions (the tool causes false positives).
 - When a file is Managed PE file, some configurations are treated as enabled regardless of actual value in a PE header; these are GS, DEP, ASLR and Heap Protection.
 - Heap Protection is only evaluated when a file is an executable file according to the SDL criteria.
 - Any of run-time configuration (e.g., use of HeapSetInformation() or SetProcessDEPPolicy()) is not considered.
